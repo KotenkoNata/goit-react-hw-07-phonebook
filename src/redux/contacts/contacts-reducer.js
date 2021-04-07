@@ -37,8 +37,11 @@ const loading = createReducer(false, {
   [fetchContactError]: () => false,
 });
 
+const error = createReducer(null, {});
+
 export const contactsReducer = combineReducers({
   items,
   filter,
   loading,
+  error,
 });

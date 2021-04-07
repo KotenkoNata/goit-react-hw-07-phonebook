@@ -1,16 +1,6 @@
 {
   "contacts": [
     {
-      "name": "natalia",
-      "number": "798798",
-      "id": 10
-    },
-    {
-      "name": "Nataliarty",
-      "number": "7567",
-      "id": 11
-    },
-    {
       "name": " utyutmhj",
       "number": "878989",
       "id": 12
@@ -29,6 +19,11 @@
       "name": "Natalia",
       "number": "456456",
       "id": 15
+    },
+    {
+      "name": " utyutt",
+      "number": "656756",
+      "id": 16
     }
   ]
 }
