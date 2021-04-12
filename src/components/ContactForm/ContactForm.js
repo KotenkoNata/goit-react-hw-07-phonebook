@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import contactOperations from '../../redux/contacts/contacts-operations';
+import {
+  contactOperations,
+  contactsSelectors,
+} from '../../redux/contacts/index';
 
 import styles from './ContactForm.module.css';
 
@@ -24,21 +27,20 @@ class ContactForm extends Component {
     event.preventDefault();
 
     const { name, number } = this.state;
+    const { items, onSubmit } = this.props;
 
     if (!name) {
       return;
     }
 
-    const existingContact = this.props.state.contacts.items.find(
-      contact => contact.name === name,
-    );
+    const existingContact = items.find(contact => contact.name === name);
 
     if (existingContact) {
       alert(`${existingContact.name} is already in contacts.`);
       return;
     }
 
-    this.props.onSubmit(name, number);
+    onSubmit(name, number);
 
     this.reset();
   };
@@ -79,7 +81,7 @@ class ContactForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  state,
+  items: contactsSelectors.getAllContacts(state),
 });
 
 const mapDispatchToProps = dispatch => ({

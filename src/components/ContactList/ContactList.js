@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import contactOperations from '../../redux/contacts/contacts-operations';
+import {
+  contactOperations,
+  contactsSelectors,
+} from '../../redux/contacts/index';
 
 import PropTypes from 'prop-types';
 
@@ -62,17 +65,9 @@ class ContactList extends Component {
   }
 }
 
-const getVisibleContacts = (allContacts, filter) => {
-  const normalizedFilter = filter.toLowerCase();
-
-  return allContacts.filter(({ name }) =>
-    name.toLowerCase().includes(normalizedFilter),
-  );
-};
-
-const mapStateToProps = ({ contacts: { items, filter, loading } }) => ({
-  contacts: getVisibleContacts(items, filter),
-  isLoading: loading,
+const mapStateToProps = state => ({
+  contacts: contactsSelectors.getVisibleContacts(state),
+  isLoading: contactsSelectors.getLoading(state),
 });
 
 const mapDispatchToProps = dispatch => ({
